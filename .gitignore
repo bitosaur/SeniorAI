@@ -1,0 +1,37 @@
+# Secrets
+.env
+*.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Captures and logs
+captures/
+logs/
+*.jpg
+*.jpeg
+*.mp3
+*.wav
+# Commit pre-recorded voice/tone assets
+!assets/audio/*.mp3
+!assets/audio/*.wav
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Claude Code (local-only settings and agent worktrees)
+.claude/settings.local.json
+.claude/worktrees/

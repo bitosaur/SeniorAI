@@ -1,0 +1,17 @@
+# SeniorAI — udev rule for the 3-button USB keypad.
+#
+# Vendor 514c:8851 ships a USB descriptor that contains non-ASCII characters
+# (e.g. "c̪USB Keyboardȉ"), making the /dev/input/by-id path painful to
+# reference in scripts or config. This rule creates a stable ASCII symlink:
+#
+#     /dev/input/seniorai-keypad
+#
+# It's filtered to the EV_KEY event node (not the composite mouse node the
+# same device also emits) via ENV{ID_INPUT_KEYBOARD}=="1".
+#
+# Installed to /etc/udev/rules.d/99-seniorai-keypad.rules by
+# scripts/install_linux.sh. After installing, reload with:
+#     sudo udevadm control --reload
+#     sudo udevadm trigger --subsystem-match=input
+
+SUBSYSTEM=="input", ATTRS{idVendor}=="514c", ATTRS{idProduct}=="8851", ENV{ID_INPUT_KEYBOARD}=="1", KERNEL=="event*", SYMLINK+="input/seniorai-keypad", MODE="0660", GROUP="input"
